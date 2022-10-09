@@ -1,0 +1,21 @@
+#cl{
+   color:#00b7ff;
+}
+table tr{
+    padding:0px !important;
+ }
+ thead{
+    color: #00b7ff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+ }
+ .btn{
+   background-color: #00b7ff;
+   color:white;
+   margin: 8px;
+   float: right;
+ }
+ .btn:hover{
+   background-color: #00b7ff;
+ }

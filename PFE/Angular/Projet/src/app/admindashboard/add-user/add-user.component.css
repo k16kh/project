@@ -1,0 +1,25 @@
+#submit{
+    background-color: #00b7ff;
+    color:white;
+}
+#title{
+    color:#00b7ff;
+}
+label{
+    color: #00b7ff;
+    font-weight: bold;
+}
+button{
+    margin: 10px;
+}
+h1{
+    color: #00b7ff;
+}
+#datefin{
+    display: none;
+
+} 
+#submit{
+    display: block;
+
+} 
