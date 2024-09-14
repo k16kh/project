@@ -17,6 +17,6 @@ COPY --from=build /out .
 EXPOSE 80
 
 # Set the entry point to run the application
-ENTRYPOINT ["dotnet", "YourAppName.dll"]
+ENTRYPOINT ["dotnet", "ProjetWebApi.dll"]
 
 
