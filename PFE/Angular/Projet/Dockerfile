@@ -12,7 +12,7 @@ RUN npm run build --prod
 
 # Stage 2: Serve Angular app with Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/PFE/Angular/Projet /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
