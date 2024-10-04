@@ -1,14 +1,34 @@
-# Use the SDK image to build the application
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ./backend/*.csproj ./backend/
-RUN dotnet restore ./backend/*.csproj
-COPY ./backend/. ./
-RUN dotnet publish -c Release -o /app
+# Use the official .NET SDK image for building the application
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
-# Use the runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+# Set the working directory inside the container
 WORKDIR /app
-COPY --from=build /app .
-ENTRYPOINT ["dotnet", "YourBackendApp.dll"]
+
+# Copy the project file and restore the dependencies
+COPY ProjetWebApi/*.csproj ./ProjetWebApi/
+RUN dotnet restore ./ProjetWebApi/ProjetWebApi.csproj
+
+# Copy the rest of the application files to the working directory
+COPY . .
+
+# Set the working directory to the project folder
+WORKDIR /app/ProjetWebApi
+
+# Build the application in Release mode
+RUN dotnet build -c Release -o /app/build
+
+# Publish the application to the /app/out directory
+RUN dotnet publish -c Release -o /app/out
+
+# Use a smaller runtime image for the final application
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+
+# Set the working directory for the runtime
+WORKDIR /app
+
+# Copy the published application from the build stage
+COPY --from=build /app/out ./
+
+# Set the entry point for the application
+ENTRYPOINT ["dotnet", "ProjetWebApi.dll"]
 
